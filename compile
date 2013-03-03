@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# compilegpl.ngfvs318g - script to create firmware image for FVS318G
+#
+# Copyright (c) 2008 - 2009, TeamF1, Inc.
+#
+# modification history
+# --------------------
+# 01a,11jun09,anp  written.
+#
+# DESCRIPTION
+# This script creates a firmware image out of GPL bundle.
+#
+# Usage: compilegpl <version>
+# Ex:    compilegpl 3.0.8-12
+#
+export PATH=$PATH:/opt/arm-uclibc-3.4.6/bin/
+cfgVersion=2.1
+export TGT_TOOL=arm-linux-
+export KERNELPATH=linux-2.6.16-star
+export KERNELVERSION=2.6.16
+#export TOOLCHAIN=arm-uclibc_3.4.6
+
+KERNEL_SIZE=211050
+
+# colors
+black='\E[30m'
+red='\E[31m'
+green='\E[32m'
+yellow='\E[33m'
+blue='\E[34m'
+magenta='\E[35m'
+cyan='\E[36m'
+white='\E[37m'
+bold='\033[1m'
+KERNEL_DEST="linux-2.6.16-star"
+
+
+echo -e "$blue" "Building Kernel..." "\033[0m"
+echo -e "$cyan"
+make-3.81 -C linux-2.6.16-star zImage
+make-3.81 -C linux-2.6.16-star modules
+#cp linux-2.6.16-star/net/ipv4/netfilter/ipt_MASQUERADE.ko userfs/lib/modules/
+cp linux-2.6.16-star/net/ipv4/netfilter/ip_nat_pptp.ko userfs/lib/modules/
+cp linux-2.6.16-star/net/ipv4/netfilter/ip_conntrack_pptp.ko userfs/lib/modules/
+echo -e "$blue" "Done" "\033[0m"
+echo -e "$blue" "Making firmware..." "\033[0m"
+echo -e "$cyan"
+##./mksquashfs userfs firmware -le -noappend
+mkfs.jffs2 --root=userfs -o firmware
+dd if="/dev/zero" of=tmpImage obs=512 count=4608
+dd if=${KERNELPATH}/arch/arm/boot/zImage of=tmpImage ibs=512 obs=512 count=4608 conv=notrunc seek=1
+cat firmware >> tmpImage
+./firmGen tmpImage fvs318g "3.0.8-12" ${cfgVersion}
+mv fvs318g_v3.0.8-12.img fvs318g.img
+rm -f tmpImage firmware
+echo -e "$blue" "Done" "\033[0m"
+echo -e "Firmware is ready"

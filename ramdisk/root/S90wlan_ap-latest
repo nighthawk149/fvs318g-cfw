@@ -1,0 +1,158 @@
+#! /bin/sh
+
+#
+# Copyright (c) 2006-2007 Metalink Broadband (Israel)
+#
+# @file    S90wlan
+#
+# @brief   This script file for to install Metalink driver REL2.2.4.49 as AP
+#	   5.2MHz, 802.11n mode	 
+#
+# Author:  Oleksandr Baglei <OleksandrB@metalinkbb.com>
+#
+set -x
+
+cd /root
+#cd /tmp
+
+IP_TFTP=10.0.4.100
+IP_ME=10.0.4.1
+
+DOWNLOAD=0
+CONFIGURE_TC=1
+
+if expr $DOWNLOAD = 1
+then
+
+tftp -gr mtlk.ko $IP_TFTP
+chmod a+x mtlk.ko
+
+
+
+tftp -gr ProgModel_A_CB.bin           $IP_TFTP
+#tftp -gr ProgModel_A_CB_A0_RevA.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_A0_RevB.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_C4_RevD.bin   $IP_TFTP
+tftp -gr ProgModel_A_CB_C4_RevE.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_DA_RevA.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_E6_RevA.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_E7_RevA.bin   $IP_TFTP
+#tftp -gr ProgModel_A_CB_E9_RevA.bin   $IP_TFTP
+tftp -gr ProgModel_A_nCB.bin          $IP_TFTP
+#tftp -gr ProgModel_A_nCB_A0_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_A0_RevB.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_C4_RevD.bin  $IP_TFTP
+tftp -gr ProgModel_A_nCB_C4_RevE.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_DA_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_E6_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_E7_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_A_nCB_E9_RevA.bin  $IP_TFTP
+tftp -gr ProgModel_BG_CB.bin          $IP_TFTP
+#tftp -gr ProgModel_BG_CB_A0_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_A0_RevB.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_C4_RevD.bin  $IP_TFTP
+tftp -gr ProgModel_BG_CB_C4_RevE.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_DA_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_E6_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_E7_RevA.bin  $IP_TFTP
+#tftp -gr ProgModel_BG_CB_E9_RevA.bin  $IP_TFTP
+tftp -gr ProgModel_BG_nCB.bin         $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_A0_RevA.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_A0_RevB.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_C4_RevD.bin $IP_TFTP
+tftp -gr ProgModel_BG_nCB_C4_RevE.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_DA_RevA.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_E6_RevA.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_E7_RevA.bin $IP_TFTP
+#tftp -gr ProgModel_BG_nCB_E9_RevA.bin $IP_TFTP
+tftp -gr ap_upper.bin $IP_TFTP
+tftp -gr contr_lm.bin  $IP_TFTP
+tftp -gr bootloader.bin  $IP_TFTP
+tftp -gr hostapd $IP_TFTP
+tftp -gr hostapd0.conf $IP_TFTP
+fi
+
+chmod a+x *
+mv *.bin /tmp
+
+# WLAN module IP 
+#MyIPWLAN=10.0.0.156
+
+#echo 0 > /proc/sys/kernel/printk
+echo "loading metalink wlan driver"
+# BclSockSever can be run with Wireless Extentions support
+insmod mtlk.ko ap=1
+
+#echo Configuring driver....
+echo 1          > /proc/sys/dev/mtlk/wlan0/FrequencyBand
+echo 6		> /proc/sys/dev/mtlk/wlan0/Channel  
+echo Mtlk236_AP	> /proc/sys/dev/mtlk/wlan0/ESSID 
+echo US 	> /proc/sys/dev/mtlk/wlan0/Country
+echo 0		> /proc/sys/dev/mtlk/wlan0/TxPower
+echo 0x00000015	> /proc/sys/dev/mtlk/wlan0/BasicRateSet
+echo 1          > /proc/sys/dev/mtlk/wlan0/AdvancedCoding
+echo 255	> /proc/sys/dev/mtlk/wlan0/AlgoCalibrMask
+echo 0          > /proc/sys/dev/mtlk/wlan0/AlgoOnLineCalibrMask
+echo 2          > /proc/sys/dev/mtlk/wlan0/AMPDUMaxLength
+echo 0x00000015 > /proc/sys/dev/mtlk/wlan0/BasicRateSet
+echo 20         > /proc/sys/dev/mtlk/wlan0/BeaconKeepaliveTimeout
+echo 0xffff80ff > /proc/sys/dev/mtlk/wlan0/OperateRateSet
+echo 1          > /proc/sys/dev/mtlk/wlan0/ShortPreamble
+echo 1          > /proc/sys/dev/mtlk/wlan0/11nProtectionType
+echo 0		> /proc/sys/dev/mtlk/wlan0/11h_Active
+
+echo 3          > /proc/sys/dev/mtlk/wlan0/AC_BE/AIFSN
+echo 3          > /proc/sys/dev/mtlk/wlan0/AC_BE/AIFSN_AP
+echo 6          > /proc/sys/dev/mtlk/wlan0/AC_BE/CWmax_AP
+echo 10         > /proc/sys/dev/mtlk/wlan0/AC_BE/TimeoutInterval
+
+echo 7          > /proc/sys/dev/mtlk/wlan0/AC_BK/AIFSN
+echo 7          > /proc/sys/dev/mtlk/wlan0/AC_BK/AIFSN_AP
+echo 10		> /proc/sys/dev/mtlk/wlan0/AC_BK/CWmax_AP
+echo 10         > /proc/sys/dev/mtlk/wlan0/AC_BK/TimeoutInterval
+
+echo 10		> /proc/sys/dev/mtlk/wlan0/AC_VI/TimeoutInterval
+echo 1		> /proc/sys/dev/mtlk/wlan0/AC_VI/UseAggregation
+
+##################################################3
+# ArnonM:
+echo 7          > /proc/sys/dev/mtlk/wlan0/AC_VI/MaxNumOfPackets
+echo 12000  > /proc/sys/dev/mtlk/wlan0/AC_VI/MaxNumOfBytes
+### In STA:
+### echo 3		> /proc/sys/dev/mtlk/wlan0/AC_VI/TimeoutInterval
+
+echo 7          > /proc/sys/dev/mtlk/wlan0/AC_BE/MaxNumOfPackets
+echo 12000      > /proc/sys/dev/mtlk/wlan0/AC_BE/MaxNumOfBytes
+### In STA:
+### echo 3		> /proc/sys/dev/mtlk/wlan0/AC_BE/TimeoutInterval
+
+##################################################3
+
+echo 2          > /proc/sys/dev/mtlk/wlan0/AC_VO/MaxNumOfPackets
+echo 10         > /proc/sys/dev/mtlk/wlan0/AC_VO/TimeoutInterval
+echo 1          > /proc/sys/dev/mtlk/wlan0/AC_VO/UseAggregation
+
+#	echo setting up ip forwarding
+echo 1                > /proc/sys/net/ipv4/ip_forward
+
+#echo Setting up wireless interface...
+##ifconfig wlan0 $MyIPWLAN netmask 255.255.255.0 broadcast 10.0.0.255 up
+
+# ADD TO BRIDGE:
+ifconfig eth0 0.0.0.0
+ifconfig wlan0 0.0.0.0
+brctl addbr br0
+brctl addif br0 wlan0
+brctl addif br0 eth0
+ifconfig br0 $IP_ME netmask 255.255.255.0 up
+#BclSockServer &
+
+# Set up TC queues
+if expr $CONFIGURE_TC = 1
+then
+. ./tc.sh
+fi
+
+#echo 7 > /proc/sys/kernel/printk
+
+cd -

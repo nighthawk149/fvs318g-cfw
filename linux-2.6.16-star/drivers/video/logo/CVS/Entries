@@ -1,0 +1,18 @@
+/.gitignore/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/clut_vga16.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo.c/1.1.1.1/Wed Dec 24 05:35:58 2008//
+/logo_dec_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_linux_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_linux_mono.pbm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_linux_vga16.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_m32r_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_mac_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_parisc_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_sgi_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_sun_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_superh_clut224.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_superh_mono.pbm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+/logo_superh_vga16.ppm/1.1.1.1/Wed Dec 24 05:35:58 2008/-kb/
+D

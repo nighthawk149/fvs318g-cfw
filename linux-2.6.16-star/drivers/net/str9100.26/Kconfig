@@ -1,0 +1,40 @@
+menu "STAR Gigabit Switch support"
+	depends on ARCH_STR9100
+
+config STAR_GSW
+	tristate "STAR Gigabit Switch driver support"
+	help
+
+choice
+	prompt "STAR Board"
+	depends on STAR_GSW
+	default DORADO
+
+config DORADO
+	bool "Dorado"
+
+config DORADO2
+	bool "Dorado2"
+
+config VIRGO
+	bool "Virgo"
+
+config VELA
+	bool "Vela"
+
+config LIBRA
+	bool "Libra"
+
+config LEO
+	bool "Leo"
+
+endchoice
+
+config STR9100_SHNAT
+	bool "STAR Smart HNAT Support"
+	depends on STAR_GSW
+	help
+	  Add STAR Smart HNAT support function in kernel
+
+endmenu
+

@@ -1,0 +1,11 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:36:01 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:36:01 2008/-kb/
+/cpufreq.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_conservative.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_ondemand.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_performance.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_powersave.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_stats.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/cpufreq_userspace.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+/freq_table.c/1.1.1.1/Wed Dec 24 05:36:01 2008//
+D

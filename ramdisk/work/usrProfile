@@ -1,0 +1,8 @@
+# custom user profile
+
+export PATH=$WORK:$PATH
+export LD_LIBRARY_PATH=$WORK:$LD_LIBRARY_PATH
+export PATH=$WORK/bin:$PATH
+export LD_LIBRARY_PATH=$WORK/lib:$LD_LIBRARY_PATH:/work/pfrm1.0
+export PATH=/work/pfrm1.0:$PATH
+export LD_LIBRARY_PATH=/work/pfrm1.0:$LD_LIBRARY_PATH

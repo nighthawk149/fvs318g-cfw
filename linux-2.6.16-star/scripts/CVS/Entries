@@ -1,0 +1,43 @@
+/.gitignore/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Kbuild.include/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Lindent/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.build/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.clean/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.host/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.lib/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.modinst/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile.modpost/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/bin2c.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/binoffset.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/bloat-o-meter/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/checkconfig.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/checkincludes.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/checkstack.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/checkversion.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/conmakehash.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/extract-ikconfig/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/gcc-version.sh/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/gen_initramfs_list.sh/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/kallsyms.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/kernel-doc/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/makelst/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/mkcompile_h/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/mkmakefile/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/mksysmap/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/mkuboot.sh/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/mkversion/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/namespace.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/patch-kernel/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/pnmtologo.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/reference_discarded.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/reference_init.pl/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/setlocalversion/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/show_delta/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/ver_linux/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+D/basic////
+D/genksyms////
+D/kconfig////
+D/ksymoops////
+D/mod////
+D/package////

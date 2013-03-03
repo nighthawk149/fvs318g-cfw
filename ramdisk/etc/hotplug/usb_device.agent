@@ -1,0 +1,127 @@
+#!/bin/sh
+#
+# USB-specific hotplug policy agent.
+#
+# Kernel USB hotplug params include:
+#	
+#	ACTION=%s [add or remove]
+#	DEVPATH=%s [in 2.5 kernels, /sys/$DEVPATH]
+#	PRODUCT=%x/%x/%x
+#	INTERFACE=%d/%d/%d [ for interface 0, if TYPE=0/*/* ]
+#	TYPE=%d/%d/%d
+
+
+
+WORK=/pfrm2.0
+i=10
+
+if [ -f /etc/default/hotplug ]; then
+    . /etc/default/hotplug
+fi
+
+cd /etc/hotplug
+. ./hotplug.functions
+
+if [ "$ACTION" = "" ]; then
+    echo "Bad USB agent invocation, no action"
+    exit 1
+fi
+
+
+generate_usb_db_table_event ( )
+    {
+	while ! result=`sqlite3 /tmp/system.db "select ObjRevId from USB where rowId = 1 ; " ` ; do sleep 1 ; done ;
+	while ! sqlite3 /tmp/system.db "update USB set ObjRevId = $result where rowId = 1 " ; do sleep 1  ; done ; 
+    }
+
+printer_hotplug_event ( )
+    {
+    #
+    # What to do with this USB hotplug event?
+    #
+    case $ACTION in 
+add)
+          # check /etc/hosts contains an entry for hostname  	
+          HOSTNAME=`hostname` ;	
+          if ( cat /etc/hosts | grep $HOSTNAME ) then
+    	      echo "File /etc/hosts is ok";
+          else
+	      echo "127.0.0.1        $HOSTNAME" >> /etc/hosts ;
+          fi	
+
+          # makedevs  	
+          mkdir /dev/usb
+          mknod /dev/usb/lp0 c 180 0
+          chmod a+rw /dev/usb/lp0
+	 	
+          # run management backend	
+          #/pfrm2.0/bin/printerCmd
+	  generate_usb_db_table_event
+          ;;
+remove)
+	  killall cupsd
+	  echo "" > /etc/cups/printers.conf
+          ;;
+*)
+        echo $ACTION event not supported
+        exit 1
+        ;;
+    esac
+    }
+
+nas_hotplug_event ( )
+    {
+    #
+    # What to do with this USB hotplug event?
+    #
+    case $ACTION in 
+add)
+          # run mount option	
+          sleep $i
+          echo "mounting ">>/tmp/debug.txt
+          mount /dev/sda1
+	  generate_usb_db_table_event
+          echo "mounted ">>/tmp/debug.txt
+          ;;
+*)
+        echo $ACTION event not supported
+        exit 1
+        ;;
+    esac
+    }
+
+do_cleanup ( )
+{
+    # clean up any printer daemons
+    killall cupsd
+    echo "" > /etc/cups/printers.conf
+    /etc/rc.d/init.d stop
+    umount /media/NAS
+    echo "un-mounted ">>/tmp/debug.txt
+    #network device
+    brctl delif br0 eth3
+}
+
+
+
+
+# set the path
+export PATH=$WORK/bin:$PATH
+export LD_LIBRARY_PATH=$WORK/lib:/lib:$LD_LIBRARY_PATH
+
+
+if [ $ACTION = 'remove' ]; then
+    do_cleanup
+    generate_usb_db_table_event
+fi 
+
+# whether the device plugged in is a printer or a storage device.
+
+if ( cat /proc/bus/usb/devices | grep "Driver=usblp" ) then 
+   printer_hotplug_event
+elif ( cat /proc/bus/usb/devices | grep "Driver=usb-storage" ) then 
+   nas_hotplug_event
+else
+   generate_usb_db_table_event
+fi	 
+

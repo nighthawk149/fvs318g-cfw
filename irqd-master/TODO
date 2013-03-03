@@ -1,0 +1,12 @@
+* use bison %locations
+
+* balance non-NIC IRQs
+
+* implement other strategy, using less CPUs
+
+* use sysfs to read CPU info (road to 'CPU hotplug')
+
+* automake: add libnl version check
+
+* configuration: ban some IRQs?
+

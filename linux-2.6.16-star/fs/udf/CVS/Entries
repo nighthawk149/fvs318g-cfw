@@ -1,0 +1,25 @@
+/Makefile/1.1.1.1/Wed Dec 24 05:35:47 2008/-kb/
+/balloc.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/crc.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/dir.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/directory.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/ecma_167.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/file.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/fsync.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/ialloc.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/inode.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/lowlevel.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/misc.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/namei.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/osta_udf.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/partition.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/super.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/symlink.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/truncate.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/udf_i.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/udf_sb.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/udfdecl.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/udfend.h/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/udftime.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+/unicode.c/1.1.1.1/Wed Dec 24 05:35:47 2008//
+D

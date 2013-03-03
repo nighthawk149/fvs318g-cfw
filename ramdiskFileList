@@ -1,0 +1,403 @@
+# ramdiskFileList - initRamFS file list for Netgear FVS318G Board
+#
+# Copyright (c) 2008, TeamF1, Inc.
+#
+# modification history
+# --------------------
+# 01b,06jan09,anp  added top. 
+# 01a,20nov08,luv  written. 
+#
+# DESCRIPTION
+# This is an ramdiskFileList, which can be used for creating an ramdisk for
+# a 2.6.x kernel. This file tells kernel, that what file system tree needs
+# to be created, including directories, files and links. 
+# It also tells from where to copy these files into the file system.
+#
+# NOTE: 
+# 1. Paths here are for a Netgear FVS318G tree.
+# 2. Make sure that the source files below are in specified locations
+#    otherwise kernel will cry during compilation :(.
+# 3. CONFIG_INITRAMFS_SOURCE in kernel configuration should point to this file.
+# 4. If your kernel is not booting, it could be that size of ramdisk has 
+#    crossed 4MB barrier. Remove some files down here and then try.
+#
+
+# 'init' stuff
+
+slink /init /bin/busybox 0755 0 0
+slink /linuxrc /bin/busybox 0755 0 0
+slink /sbin/init /bin/busybox 0755 0 0
+
+# /bin directory
+dir /bin 0755 0 0
+#file /bin/busybox ../ramdisk/bin/busybox 0755 0 0
+file /bin/busybox ../busybox-1.01/busybox 0755 0 0
+file /bin/bcm5081 ../ramdisk/bin/bcm5081 0755 0 0
+file /bin/bcminfo ../ramdisk/bin/bcminfo 0755 0 0
+file /bin/bcmvlan ../ramdisk/bin/bcmvlan 0755 0 0
+file /bin/bcmdump ../ramdisk/bin/bcmdump 0755 0 0
+file /bin/bcmop ../ramdisk/bin/bcmop 0755 0 0
+file /bin/manuinfo ../ramdisk/bin/manuinfo 0755 0 0
+slink /bin/addgroup /bin/busybox 0755 0 0
+slink /bin/adduser /bin/busybox 0755 0 0
+slink /bin/ash /bin/busybox 0755 0 0
+slink /bin/cat /bin/busybox 0755 0 0
+slink /bin/chgrp /bin/busybox 0755 0 0
+slink /bin/chmod /bin/busybox 0755 0 0
+slink /bin/chown /bin/busybox 0755 0 0
+slink /bin/cp /bin/busybox 0755 0 0
+slink /bin/date /bin/busybox 0755 0 0
+slink /bin/dd /bin/busybox 0755 0 0
+slink /bin/delgroup /bin/busybox 0755 0 0
+slink /bin/deluser /bin/busybox 0755 0 0
+slink /bin/dmesg /bin/busybox 0755 0 0
+slink /bin/echo /bin/busybox 0755 0 0
+slink /bin/egrep /bin/busybox 0755 0 0
+slink /bin/false /bin/busybox 0755 0 0
+slink /bin/fgrep /bin/busybox 0755 0 0
+slink /bin/getopt /bin/busybox 0755 0 0
+slink /bin/grep /bin/busybox 0755 0 0
+slink /bin/gunzip /bin/busybox 0755 0 0
+slink /bin/gzip /bin/busybox 0755 0 0
+slink /bin/hostname /bin/busybox 0755 0 0
+slink /bin/ln /bin/busybox 0755 0 0
+slink /bin/login /bin/busybox 0755 0 0
+slink /bin/ls /bin/busybox 0755 0 0
+slink /bin/mkdir /bin/busybox 0755 0 0
+slink /bin/mknod /bin/busybox 0755 0 0
+slink /bin/mktemp /bin/busybox 0755 0 0
+slink /bin/more /bin/busybox 0755 0 0
+slink /bin/mount /bin/busybox 0755 0 0
+slink /bin/mv /bin/busybox 0755 0 0
+slink /bin/netstat /bin/busybox 0755 0 0
+slink /bin/nice /bin/busybox 0755 0 0
+slink /bin/pidof /bin/busybox 0755 0 0
+slink /bin/ping /bin/busybox 0755 0 0
+slink /bin/pwd /bin/busybox 0755 0 0
+slink /bin/rm /bin/busybox 0755 0 0
+slink /bin/rmdir /bin/busybox 0755 0 0
+slink /bin/run-parts /bin/busybox 0755 0 0
+slink /bin/sed /bin/busybox 0755 0 0
+slink /bin/sh /bin/busybox 0755 0 0
+slink /bin/sleep /bin/busybox 0755 0 0
+slink /bin/stat /bin/busybox 0755 0 0
+slink /bin/stty /bin/busybox 0755 0 0
+slink /bin/su /bin/busybox 0755 0 0
+slink /bin/sync /bin/busybox 0755 0 0
+slink /bin/tar /bin/busybox 0755 0 0
+slink /bin/true /bin/busybox 0755 0 0
+slink /bin/touch /bin/busybox 0755 0 0
+slink /bin/umount /bin/busybox 0755 0 0
+slink /bin/uname /bin/busybox 0755 0 0
+slink /bin/usleep /bin/busybox 0755 0 0
+slink /bin/vi /bin/busybox 0755 0 0
+slink /bin/zcat /bin/busybox 0755 0 0
+slink /bin/free /bin/busybox 0755 0 0
+slink /bin/ps /bin/busybox 0755 0 0
+slink /bin/top /bin/busybox 0755 0 0
+slink /bin/inetd /bin/busybox 0755 0 0
+slink /bin/vconfig /bin/busybox 0755 0 0
+
+# /dev directory
+dir /dev 0755 0 0
+nod /dev/console 0666 0 0 c 5 1
+nod /dev/fb0 0666 0 0 c 20 0
+nod /dev/fb1 0666 0 0 c 20 32
+nod /dev/fb2 0666 0 0 c 20 64
+nod /dev/fb3 0666 0 0 c 20 96
+nod /dev/hda 0666 0 0 b 3 0
+nod /dev/hda1 0666 0 0 b 3 1
+nod /dev/hda2 0666 0 0 b 3 2
+nod /dev/hda3 0666 0 0 b 3 3
+nod /dev/hda4 0666 0 0 b 3 4
+nod /dev/hda5 0666 0 0 b 3 5
+nod /dev/hda6 0666 0 0 b 3 6
+nod /dev/hda7 0666 0 0 b 3 7
+nod /dev/hda8 0666 0 0 b 3 8
+nod /dev/hda9 0666 0 0 b 3 9
+nod /dev/hda10 0666 0 0 b 3 10
+nod /dev/hda11 0666 0 0 b 3 11
+nod /dev/hda12 0666 0 0 b 3 12
+nod /dev/hda13 0666 0 0 b 3 13
+nod /dev/hda14 0666 0 0 b 3 14
+nod /dev/hdb 0666 0 0 b 3 64
+nod /dev/hdb1 0666 0 0 b 3 65
+nod /dev/hdb2 0666 0 0 b 3 66
+nod /dev/hdb3 0666 0 0 b 3 67
+nod /dev/hdb4 0666 0 0 b 3 68
+nod /dev/hdb5 0666 0 0 b 3 69
+nod /dev/hdb6 0666 0 0 b 3 70
+nod /dev/hdb7 0666 0 0 b 3 71
+nod /dev/hdb8 0666 0 0 b 3 72
+nod /dev/hdb9 0666 0 0 b 3 73
+nod /dev/hdb10 0666 0 0 b 3 74
+nod /dev/hdb11 0666 0 0 b 3 75
+nod /dev/hdb12 0666 0 0 b 3 76
+nod /dev/hdb13 0666 0 0 b 3 77
+nod /dev/hdb14 0666 0 0 b 3 78
+nod /dev/kmem 0666 0 0 c 1 2
+nod /dev/loop0 0666 0 0 c 7 0
+nod /dev/loop1 0666 0 0 c 7 1
+nod /dev/mem 0666 0 0 c 1 1
+nod /dev/mtd0 0666 0 0 c 90 0
+nod /dev/mtd1 0666 0 0 c 90 2
+nod /dev/mtd2 0666 0 0 c 90 4
+nod /dev/mtd3 0666 0 0 c 90 6
+nod /dev/mtd4 0666 0 0 c 90 8
+nod /dev/mtd5 0666 0 0 c 90 10
+nod /dev/mtdblock0 0666 0 0 b 31 0
+nod /dev/mtdblock1 0666 0 0 b 31 1
+nod /dev/mtdblock2 0666 0 0 b 31 2
+nod /dev/mtdblock3 0666 0 0 b 31 3
+nod /dev/mtdblock4 0666 0 0 b 31 4
+nod /dev/mtdblock5 0666 0 0 b 31 5
+nod /dev/null 0666 0 0 c 1 3
+nod /dev/psaux 0666 0 0 c 100 1
+nod /dev/ptmx 0666 0 0 c 5 2
+nod /dev/ptyp0 0666 0 0 c 2 0
+nod /dev/ptyp1 0666 0 0 c 2 1
+nod /dev/ptyp2 0666 0 0 c 2 2
+nod /dev/ptyp3 0666 0 0 c 2 3
+nod /dev/ptyp4 0666 0 0 c 2 4
+nod /dev/ptyp5 0666 0 0 c 2 5
+nod /dev/ptyp6 0666 0 0 c 2 6
+nod /dev/ptyp7 0666 0 0 c 2 7
+nod /dev/ptyp8 0666 0 0 c 2 8
+nod /dev/ptyp9 0666 0 0 c 2 9
+nod /dev/ram 0666 0 0 b 1 1
+nod /dev/ram0 0666 0 0 b 1 0
+nod /dev/ram1 0666 0 0 b 1 1
+nod /dev/ram2 0666 0 0 b 1 2
+nod /dev/ram3 0666 0 0 b 1 3
+nod /dev/random 0666 0 0 c 1 8
+nod /dev/rtc 0666 0 0 c 10 135
+nod /dev/sda1 0666 0 0 b 8 1
+nod /dev/tty 0666 0 0 c 5 0
+nod /dev/tty0 0666 0 0 c 4 0
+nod /dev/tty1 0666 0 0 c 4 1
+nod /dev/tty2 0666 0 0 c 4 2
+nod /dev/tty3 0666 0 0 c 4 3
+nod /dev/tty4 0666 0 0 c 4 4
+nod /dev/tty5 0666 0 0 c 4 5
+nod /dev/tty6 0666 0 0 c 4 6
+nod /dev/tty7 0666 0 0 c 4 7
+nod /dev/ttyp0 0666 0 0 c 3 0
+nod /dev/ttyp0 0666 0 0 c 57 0
+nod /dev/ttyp1 0666 0 0 c 3 1
+nod /dev/ttyp1 0666 0 0 c 57 1
+nod /dev/ttyp2 0666 0 0 c 3 2
+nod /dev/ttyp2 0666 0 0 c 57 2
+nod /dev/ttyp3 0666 0 0 c 3 3
+nod /dev/ttyp3 0666 0 0 c 57 3
+nod /dev/ttyp4 0666 0 0 c 3 4
+nod /dev/ttyp5 0666 0 0 c 3 5
+nod /dev/ttyp6 0666 0 0 c 3 6
+nod /dev/ttyp7 0666 0 0 c 3 7
+nod /dev/ttyp8 0666 0 0 c 3 8
+nod /dev/ttyp9 0666 0 0 c 3 9
+nod /dev/ttyS0 0666 0 0 c 4 64
+nod /dev/ttyS1 0666 0 0 c 4 65
+nod /dev/ttyS2 0666 0 0 c 4 66
+nod /dev/ttyS3 0666 0 0 c 4 67
+nod /dev/urandom 0666 0 0 c 1 9
+nod /dev/zero 0666 0 0 c 1 5
+
+dir /dev/input 0755 0 0
+nod /dev/input/event0 0666 0 0 c 13 64
+nod /dev/input/event1 0666 0 0 c 13 65
+nod /dev/input/event2 0666 0 0 c 13 66
+nod /dev/input/event3 0666 0 0 c 13 67
+nod /dev/input/mice 0666 0 0 c 13 63
+nod /dev/input/mouse0 0666 0 0 c 13 32
+nod /dev/input/mouse1 0666 0 0 c 13 33
+nod /dev/input/mouse2 0666 0 0 c 13 34
+nod /dev/input/mouse3 0666 0 0 c 13 35
+
+dir /dev/net 0755 0 0
+nod /dev/input/tun 0666 0 0 c 10 100
+
+dir /dev/shm 0755 0 0
+
+dir /dev/pts 0755 0 0
+
+# /etc directory
+dir /etc 0755 0 0
+file /etc/fstab ../ramdisk/etc/fstab 0755 0 0
+file /etc/rpc ../ramdisk/etc/rpc 0755 0 0
+file /etc/group ../ramdisk/etc/group 0755 0 0
+file /etc/hostname ../ramdisk/etc/hostname.dorado2 0755 0 0
+file /etc/hosts ../ramdisk/etc/hosts 0755 0 0
+file /etc/inittab ../ramdisk/etc/inittab.dorado 0755 0 0
+file /etc/inputrc ../ramdisk/etc/inputrc 0755 0 0
+file /etc/issue ../ramdisk/etc/issue 0755 0 0
+file /etc/passwd ../ramdisk/etc/passwd 0755 0 0
+file /etc/profile ../ramdisk/etc/profile 0755 0 0
+file /etc/protocols ../ramdisk/etc/protocols 0755 0 0
+file /etc/random-seed ../ramdisk/etc/random-seed 0755 0 0
+file /etc/securetty ../ramdisk/etc/securetty 0755 0 0
+file /etc/services ../ramdisk/etc/services 0755 0 0
+file /etc/shadow ../ramdisk/etc/shadow 0755 0 0
+file /etc/inetd.conf ../ramdisk/etc/inetd.conf 0755 0 0
+file /etc/syslog.conf ../ramdisk/etc/syslog.conf 0755 0 0
+slink /etc/TZ /etc/localtime 0755 0 0
+slink /etc/mtab /proc/mounts 0755 0 0
+slink /etc/resolv.conf /tmp/resolv.conf 0755 0 0
+
+dir /etc/init.d 0755 0 0
+file /etc/init.d/rcS ../ramdisk/etc/init.d/rcS 0755 0 0
+
+dir /etc/network 0755 0 0
+dir /etc/network/if-down.d 0755 0 0
+dir /etc/network/if-post-down.d 0755 0 0
+dir /etc/network/if-pre-up.d 0755 0 0
+dir /etc/network/if-up.d 0755 0 0
+
+# /lib directory
+dir /lib 0755 0 0
+file /lib/ld-uClibc-0.9.28.so ../ramdisk/lib/ld-uClibc-0.9.28.so 0755 0 0
+file /lib/libcrypt-0.9.28.so  ../ramdisk/lib/libcrypt-0.9.28.so 0755 0 0
+file /lib/libdl-0.9.28.so  ../ramdisk/lib/libdl-0.9.28.so 0755 0 0
+file /lib/libgcc_s.so.1 ../ramdisk/lib/libgcc_s.so.1 0755 0 0
+file /lib/libm-0.9.28.so ../ramdisk/lib/libm-0.9.28.so 0755 0 0
+file /lib/libnsl-0.9.28.so ../ramdisk/lib/libnsl-0.9.28.so 0755 0 0
+file /lib/libproc-3.2.5.so ../ramdisk/lib/libproc-3.2.5.so 0755 0 0
+file /lib/libpthread-0.9.28.so ../ramdisk/lib/libpthread-0.9.28.so 0755 0 0
+file /lib/librt-0.9.28.so ../ramdisk/lib/librt-0.9.28.so 0755 0 0
+file /lib/libthread_db-0.9.28.so ../ramdisk/lib/libthread_db-0.9.28.so 0755 0 0
+file /lib/libuClibc-0.9.28.so ../ramdisk/lib/libuClibc-0.9.28.so 0755 0 0
+file /lib/libutil-0.9.28.so ../ramdisk/lib/libutil-0.9.28.so 0755 0 0
+file /lib/libz.so.1.2.3 ../ramdisk/lib/libz.so.1.2.3 0755 0 0
+file /lib/libresolv-0.9.28.so ../ramdisk/lib/libresolv-0.9.28.so 0755 0 0
+file /lib/libthreadutil.so.2 ../ramdisk/lib/libthreadutil.so.2 0755 0 0
+slink /lib/ld-uClibc.so.0 /lib/ld-uClibc-0.9.28.so 0755 0 0
+slink /lib/libcrypt.so.0 /lib/libcrypt-0.9.28.so 0755 0 0
+slink /lib/libc.so.0 /lib/libuClibc-0.9.28.so 0755 0 0
+slink /lib/libdl.so.0 /lib/libdl-0.9.28.so 0755 0 0
+slink /lib/libdl.so /lib/libdl.so.0 0755 0 0
+slink /lib/libgcc_s.so /lib/libgcc_s.so.1 0755 0 0
+slink /lib/libm.so.0 /lib/libm-0.9.28.so 0755 0 0 
+slink /lib/libnsl.so.0 /lib/libnsl-0.9.28.so 0755 0 0
+slink /lib/libresolv.so.0 /lib/libresolv-0.9.28.so 0755 0 0
+slink /lib/librt.so.0 /lib/librt-0.9.28.so 0755 0 0
+slink /lib/libthread_db.so.1 /lib/libthread_db-0.9.28.so 0755 0 0
+slink /lib/libutil.so.0 /lib/libutil-0.9.28.so 0755 0 0
+slink /lib/libz.so /lib/libz.so.1.2.3 0755 0 0
+slink /lib/libz.so.1 /lib/libz.so.1.2.3 0755 0 0
+slink /lib/libpthread.so.0 /lib/libpthread-0.9.28.so 0755 0 0
+slink /lib/libpthread.so /lib/libpthread.so.0 0755 0 0
+dir /lib/modules 0755 0 0
+dir /lib/modules/2.6.16-star 0755 0 0
+file /lib/modules/2.6.16-star/str9100_shnat.ko ../ramdisk/lib/modules/2.6.16-star/str9100_shnat.ko 0755 0 0
+
+# /proc directory
+dir /proc 0755 0 0
+
+# /sbin directory
+dir /sbin 0755 0 0
+file /sbin/sysctl ../ramdisk/sbin/sysctl 0755 0 0
+file /sbin/flashInit ../ramdisk/sbin/flashInit 0755 0 0
+file /sbin/getty  ../ramdisk/sbin/getty 0755 0 0
+file /sbin/strace  ../ramdisk/sbin/strace 0755 0 0
+file /sbin/dhclient-script  ../ramdisk/sbin/dhclient-script 0755 0 0
+slink /sbin/klogd /bin/busybox 0755 0 0
+slink /sbin/telnetd /bin/busybox 0755 0 0
+slink /sbin/syslogd /bin/busybox 0755 0 0
+slink /sbin/halt /bin/busybox 0755 0 0
+slink /sbin/hwclock /bin/busybox 0755 0 0
+slink /sbin/ifconfig /bin/busybox 0755 0 0
+slink /sbin/ifdown /bin/busybox 0755 0 0
+slink /sbin/ifup /bin/busybox 0755 0 0
+slink /sbin/init /bin/busybox 0755 0 0
+slink /sbin/insmod /bin/busybox 0755 0 0
+slink /sbin/lsmod /bin/busybox 0755 0 0
+slink /sbin/logread /bin/busybox 0755 0 0
+slink /sbin/modprobe /bin/busybox 0755 0 0
+slink /sbin/pivot_root /bin/busybox 0755 0 0
+slink /sbin/poweroff /bin/busybox 0755 0 0
+slink /sbin/reboot /bin/busybox 0755 0 0
+slink /sbin/rmmod /bin/busybox 0755 0 0
+slink /sbin/route /bin/busybox 0755 0 0
+slink /sbin/start-stop-daemon /bin/busybox 0755 0 0
+slink /sbin/sulogin /bin/busybox 0755 0 0
+slink /sbin/swapoff /bin/busybox 0755 0 0
+slink /sbin/swapon /bin/busybox 0755 0 0
+
+# /sys directory
+dir /sys 0755 0 0
+
+# /tmp directory
+dir /tmp 0777 0 0
+
+# /usr directory
+dir /usr 0755 0 0
+dir /usr/bin 0755 0 0
+dir /usr/sbin 0755 0 0
+file /usr/bin/vmstat ../ramdisk/usr/bin/vmstat 0755 0 0
+slink /usr/bin/[ /bin/busybox 0755 0 0
+slink /usr/bin/[[ /bin/busybox 0755 0 0
+slink /usr/bin/arping /bin/busybox 0755 0 0
+slink /usr/bin/awk /bin/busybox 0755 0 0
+slink /usr/bin/basename /bin/busybox 0755 0 0
+slink /usr/bin/bunzip2 /bin/busybox 0755 0 0
+slink /usr/bin/bzcat /bin/busybox 0755 0 0
+slink /usr/bin/chvt /bin/busybox 0755 0 0
+slink /usr/bin/clear /bin/busybox 0755 0 0
+slink /usr/bin/cmp /bin/busybox 0755 0 0
+slink /usr/bin/cut /bin/busybox 0755 0 0
+slink /usr/bin/deallocvt /bin/busybox 0755 0 0
+slink /usr/bin/dirname /bin/busybox 0755 0 0
+slink /usr/bin/dos2unix /bin/busybox 0755 0 0
+slink /usr/bin/du /bin/busybox 0755 0 0
+slink /usr/bin/env /bin/busybox 0755 0 0
+slink /usr/bin/expr /bin/busybox 0755 0 0
+slink /usr/bin/find /bin/busybox 0755 0 0
+slink /usr/bin/head /bin/busybox 0755 0 0
+slink /usr/bin/hexdump /bin/busybox 0755 0 0
+slink /usr/bin/hostid /bin/busybox 0755 0 0
+slink /usr/bin/id /bin/busybox 0755 0 0
+slink /usr/bin/install /bin/busybox 0755 0 0
+slink /usr/bin/killall /bin/busybox 0755 0 0
+slink /usr/bin/logger    /bin/busybox 0755 0 0
+slink /usr/bin/logname /bin/busybox 0755 0 0
+slink /usr/bin/nohup /bin/busybox 0755 0 0
+slink /usr/bin/nslookup /bin/busybox 0755 0 0
+slink /usr/bin/openvt /bin/busybox 0755 0 0
+slink /usr/bin/passwd /bin/busybox 0755 0 0
+slink /usr/bin/renice /bin/busybox 0755 0 0
+slink /usr/bin/reset /bin/busybox 0755 0 0
+slink /usr/bin/sort /bin/busybox 0755 0 0
+slink /usr/bin/strings /bin/busybox 0755 0 0
+slink /usr/bin/tail /bin/busybox 0755 0 0
+slink /usr/bin/tee /bin/busybox 0755 0 0
+slink /usr/bin/telnet /bin/busybox 0755 0 0
+slink /usr/bin/test /bin/busybox 0755 0 0
+slink /usr/bin/tftp /bin/busybox 0755 0 0
+slink /usr/bin/time /bin/busybox 0755 0 0
+slink /usr/bin/tr /bin/busybox 0755 0 0
+slink /usr/bin/tty /bin/busybox 0755 0 0
+slink /usr/bin/uniq /bin/busybox 0755 0 0
+slink /usr/bin/unix2dos /bin/busybox 0755 0 0
+slink /usr/bin/unzip /bin/busybox 0755 0 0
+slink /usr/bin/uudecode /bin/busybox 0755 0 0
+slink /usr/bin/uuencode /bin/busybox 0755 0 0
+slink /usr/bin/vlock /bin/busybox 0755 0 0
+slink /usr/bin/wc /bin/busybox 0755 0 0
+#slink /usr/bin/wget /bin/busybox 0755 0 0
+file /usr/bin/wget ../wget-1.14/src/wget 0755 0 0
+slink /usr/bin/which /bin/busybox 0755 0 0
+slink /usr/bin/whoami /bin/busybox 0755 0 0
+slink /usr/bin/xargs /bin/busybox 0755 0 0
+slink /usr/bin/yes /bin/busybox 0755 0 0
+
+# /var directory
+dir /var 0755 0 0
+slink /var/lock /tmp 0755 0 0
+slink /var/log /tmp 0755 0 0
+slink /var/pcmcia /tmp 0755 0 0
+slink /var/run /tmp 0755 0 0
+slink /var/spool /tmp 0755 0 0
+slink /var/tmp /tmp 0755 0 0
+
+# /root directory
+dir /root 0755 0 0
+file /root/autologin.sh ../ramdisk/root/autologin.sh 0755 0 0

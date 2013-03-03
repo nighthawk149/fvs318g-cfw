@@ -1,0 +1,24 @@
+# custom configuration
+
+fsInit()
+    {
+    MNTDEV=$1; MNTOPT=$2;
+    BSTGTDIR=$3; PFRMTGTDIR=$4; FIRMVER=$5
+    # this can give errors, which are benign, so redirect the errors
+    mount $MNTDEV $BSTGTDIR $MNTOPT 2>/dev/null
+    [ $? -eq 0 ] || { return 1; }
+    [ -f $PFRMTGTDIR/version ] || { umount $BSTGTDIR; return 1; }
+    [ `cat $PFRMTGTDIR/version` = $FIRMVER ] || { umount $BSTGTDIR; return 1; }
+    echo $MNTDEV > /var/firmDevName
+    return 0;
+    }
+flashInit
+fsInit /dev/image1B -oro /work /work/pfrm1.0 3.0.8-14
+[ $? -eq 0 ] || {
+fsInit /dev/image2B -oro /work /work/pfrm1.0 3.0.8-14
+}
+[ $? -eq 0 ] || {
+echo Error: fsInit Failed. Halting....
+reboot
+}
+. /work/pfrm1.0/pfrmInit

@@ -1,0 +1,27 @@
+/.gitignore/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/POTFILES.in/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/conf.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/confdata.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/expr.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/expr.h/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/gconf.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/gconf.glade/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/images.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/kconfig_load.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/kxgettext.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/lex.zconf.c_shipped/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/lkc.h/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/lkc_proto.h/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/mconf.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/menu.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/qconf.cc/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/qconf.h/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/symbol.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/util.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/zconf.gperf/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/zconf.hash.c_shipped/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/zconf.l/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/zconf.tab.c_shipped/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/zconf.y/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+D/lxdialog////

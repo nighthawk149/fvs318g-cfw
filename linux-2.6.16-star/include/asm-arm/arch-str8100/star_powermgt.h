@@ -1,0 +1,617 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2008 Cavium Networks 
+ * 
+ *  This file is free software; you can redistribute it and/or modify 
+ *  it under the terms of the GNU General Public License, Version 2, as 
+ *  published by the Free Software Foundation. 
+ *
+ *  This file is distributed in the hope that it will be useful, 
+ *  but AS-IS and WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, TITLE, or 
+ *  NONINFRINGEMENT.  See the GNU General Public License for more details. 
+ *
+ *  You should have received a copy of the GNU General Public License 
+ *  along with this file; if not, write to the Free Software 
+ *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA or 
+ *  visit http://www.gnu.org/licenses/. 
+ *
+ *  This file may also be available under a different license from Cavium. 
+ *  Contact Cavium Networks for more information
+ *
+ ******************************************************************************/
+
+
+#ifndef	_STAR_POWERMGT_H_
+#define	_STAR_POWERMGT_H_
+
+
+#include <asm/arch/star_sys_memory_map.h>
+
+
+#if defined(__UBOOT__)
+#define	PWRMGT_MEM_MAP_VALUE(reg_offset)	(*((u32 volatile *)(SYSPA_POWER_MANAGEMENT_BASE_ADDR + reg_offset)))
+#elif defined(__LINUX__)
+#define	PWRMGT_MEM_MAP_VALUE(reg_offset)	(*((u32 volatile *)(SYSVA_POWER_MANAGEMENT_BASE_ADDR + reg_offset)))
+#else
+#error "NO SYSTEM DEFINED"
+#endif
+
+
+/*
+ * define access macros
+ */
+#define	PWRMGT_CLOCK_GATE_CONTROL0_REG			PWRMGT_MEM_MAP_VALUE(0x00)
+#define	PWRMGT_CLOCK_GATE_CONTROL1_REG			PWRMGT_MEM_MAP_VALUE(0x04)
+#define	PWRMGT_SOFTWARE_RESET_CONTROL_REG		PWRMGT_MEM_MAP_VALUE(0x08)
+#define	PWRMGT_SYSTEM_CLOCK_CONTROL_REG			PWRMGT_MEM_MAP_VALUE(0x0C)
+#define	PWRMGT_PLL_POWER_DOWN_CONTROL_REG		PWRMGT_MEM_MAP_VALUE(0x10)
+#define	PWRMGT_CPU_INITIALIZATION_REG			PWRMGT_MEM_MAP_VALUE(0x14)
+#define	PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG		PWRMGT_MEM_MAP_VALUE(0x1C)
+#define	PWRMGT_USB_DEVICE_POWERMGT_REG			PWRMGT_MEM_MAP_VALUE(0x20)
+#define	PWRMGT_REGULATOR_CONTROL_REG			PWRMGT_MEM_MAP_VALUE(0x24)
+#define	PWRMGT_RTC_XTAL_CONTROL_REG			PWRMGT_MEM_MAP_VALUE(0x28)
+#define	PWRMGT_PLL250_CONTROL_REG			PWRMGT_MEM_MAP_VALUE(0x2C)
+
+
+/*
+ * define constants macros
+ */
+#define	PWRMGT_PCMCIA_SOFTWARE_RESET_BIT_INDEX			(1)
+#define	PWRMGT_IDE_SOFTWARE_RESET_BIT_INDEX			(2)
+#define	PWRMGT_VIC_SOFTWARE_RESET_BIT_INDEX			(3)
+#define	PWRMGT_DMA_SOFTWARE_RESET_BIT_INDEX			(4)
+#define	PWRMGT_NIC_SOFTWARE_RESET_BIT_INDEX			(5)
+#define	PWRMGT_USB_HOST_SOFTWARE_RESET_BIT_INDEX		(6)
+#define	PWRMGT_PCI_BRIDGE_SOFTWARE_RESET_BIT_INDEX		(7)
+#define	PWRMGT_P2S_SOFTWARE_RESET_BIT_INDEX			(8)
+#define	PWRMGT_UART0_SOFTWARE_RESET_BIT_INDEX			(9)
+#define	PWRMGT_UART1_SOFTWARE_RESET_BIT_INDEX			(10)
+#define	PWRMGT_TIMER_SOFTWARE_RESET_BIT_INDEX			(11)
+#define	PWRMGT_WDTIMER_SOFTWARE_RESET_BIT_INDEX			(12)
+#define	PWRMGT_GPIO_SOFTWARE_RESET_BIT_INDEX			(13)
+#define	PWRMGT_USB_DEVICE_SOFTWARE_RESET_BIT_INDEX		(14)
+#define	PWRMGT_FAST_ETHERNET_PHY_SOFTWARE_RESET_BIT_INDEX	(15)
+#define	PWRMGT_HSDMA_SOFTWARE_RESET_BIT_INDEX			(16)
+
+
+#define	PWRMGT_PLL_FREQUENCY_175MHZ			(0 << 0)
+#define	PWRMGT_PLL_FREQUENCY_200MHZ			(1 << 0)
+#define	PWRMGT_PLL_FREQUENCY_225MHZ			(2 << 0)
+#define	PWRMGT_PLL_FREQUENCY_250MHZ			(3 << 0)
+
+#define	PWRMGT_CPUCLK_DIVIDER_BY_1			(0 << 2)
+#define	PWRMGT_CPUCLK_DIVIDER_BY_2			(1 << 2)
+#define	PWRMGT_CPUCLK_DIVIDER_BY_3			(2 << 2)
+#define	PWRMGT_CPUCLK_DIVIDER_BY_4			(3 << 2)
+
+#define	PWRMGT_HCLK_DIVIDER_BY_1			(0 << 4)
+#define	PWRMGT_HCLK_DIVIDER_BY_2			(1 << 4)
+#define	PWRMGT_HCLK_DIVIDER_BY_3			(2 << 4)
+#define	PWRMGT_HCLK_DIVIDER_BY_4			(3 << 4)
+
+#define	PWRMGT_HCLK_SOURCE_FCLK				(0 << 6)
+#define	PWRMGT_HCLK_SOURCE_125MHZ			(1 << 6)
+
+#define	PWRMGT_PCLK_DIVIDER_BY_1			(0 << 8)
+#define	PWRMGT_PCLK_DIVIDER_BY_2			(1 << 8)
+#define	PWRMGT_PCLK_DIVIDER_BY_3			(2 << 8)
+#define	PWRMGT_PCLK_DIVIDER_BY_4			(3 << 8)
+
+#define	PWRMGT_PCICLK_DIVIDER_BY_1			(0 << 10)
+#define	PWRMGT_PCICLK_DIVIDER_BY_2			(1 << 10)
+#define	PWRMGT_PCICLK_DIVIDER_BY_3			(2 << 10)
+#define	PWRMGT_PCICLK_DIVIDER_BY_4			(3 << 10)
+
+
+#define	PWRMGT_PLLCLK_TO_CPUCLK_RATIO_BY_1		(1)
+#define	PWRMGT_PLLCLK_TO_CPUCLK_RATIO_BY_2		(2)
+#define	PWRMGT_PLLCLK_TO_CPUCLK_RATIO_BY_3		(3)
+#define	PWRMGT_PLLCLK_TO_CPUCLK_RATIO_BY_4		(4)
+
+#define	PWRMGT_CPUCLK_TO_HCLK_RATIO_BY_1		(1)
+#define	PWRMGT_CPUCLK_TO_HCLK_RATIO_BY_2		(2)
+#define	PWRMGT_CPUCLK_TO_HCLK_RATIO_BY_3		(3)
+#define	PWRMGT_CPUCLK_TO_HCLK_RATIO_BY_4		(4)
+
+#define	PWRMGT_HCLK_TO_PCLK_RATIO_BY_1			(1)
+#define	PWRMGT_HCLK_TO_PCLK_RATIO_BY_2			(2)
+#define	PWRMGT_HCLK_TO_PCLK_RATIO_BY_3			(3)
+#define	PWRMGT_HCLK_TO_PCLK_RATIO_BY_4			(4)
+
+/*
+ * Macro defines for Clock Gate	Control
+ */
+#define	HAL_PWRMGT_DISABLE_DRAMC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~(0x1); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_NIC_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 0); \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x0F << 20); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 5); \
+}
+
+#define	HAL_PWRMGT_DISABLE_NIC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~(0x0F <<	20); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_PCI_BRIDGE_33M_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 1); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	10); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x1 << 10); \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 28) | (0x1 << 30); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 7); \
+}
+
+#define	HAL_PWRMGT_ENABLE_PCI_BRIDGE_66M_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 1); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	10); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x0 << 10); \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 28) | (0x1 << 30); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 7); \
+}
+
+#define	HAL_PWRMGT_DISABLE_PCI_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~((0x1 <<	28) | (0x1 << 30)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_USB_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0xF << 1); \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 24); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 28); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 6) | (0x1 << 14); \
+}
+
+#define	HAL_PWRMGT_DISABLE_USB_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~(0x1 << 24); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 28); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_DMA_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 16); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 4); \
+}
+
+#define	HAL_PWRMGT_DISABLE_DMA_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~(0x1 << 16); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_IDE_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 8) | (0x1	<< 9); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 2); \
+}
+
+#define	HAL_PWRMGT_DISABLE_IDE_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~((0x1 <<	8) | (0x1 << 9)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_UART0_CLOCK()	\
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~((0x1	<< 1) |	(0x1 <<	2) | (0x1 << 5)); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 12); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 9); \
+}
+
+#define	HAL_PWRMGT_DISABLE_UART0_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 12); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_UART1_CLOCK()	\
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~((0x1	<< 1) |	(0x1 <<	2) | (0x1 << 5)); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 13); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 10); \
+}
+
+#define	HAL_PWRMGT_DISABLE_UART1_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 13); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_PCMCIA_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 4) | (0x1	<< 5); \
+}
+
+#define	HAL_PWRMGT_DISABLE_PCMCIA_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~((0x1 <<	4) | (0x1 << 5)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_GPIO_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 25); \
+}
+
+#define	HAL_PWRMGT_DISABLE_GPIO_CLOCK()	\
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 25); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_WDTIMER_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 21) | (0x1 << 22); \
+}
+
+#define	HAL_PWRMGT_DISABLE_WDTIMER_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~((0x1 <<	21) | (0x1 << 22)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_RTC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 23); \
+}
+
+#define	HAL_PWRMGT_DISABLE_RTC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 23); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_TIMER_CLOCK()	\
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 17) | (0x1 << 18)	| (0x1 << 19); \
+}
+
+#define	HAL_PWRMGT_DISABLE_TIMER_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~((0x1 <<	17) | (0x1 << 18) | (0x1 << 19)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_I2C_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 1); \
+}
+
+#define	HAL_PWRMGT_DISABLE_I2C_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 1); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_I2S_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~((0x1	<< 5) |	(0x1 <<	6)); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 1) | (0x1	<< 10);	\
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 8); \
+}
+
+#define	HAL_PWRMGT_DISABLE_I2S_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~((0x1 <<	1) | (0x1 << 10)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_PCM_CLOCK() \
+{ \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 5); \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 1) | (0x1	<< 6); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 8); \
+}
+
+#define	HAL_PWRMGT_DISABLE_PCM_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~((0x1 <<	1) | (0x1 << 6)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_SPI_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 0) | (0x1	<< 1); \
+}
+
+#define	HAL_PWRMGT_DISABLE_SPI_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~((0x1 <<	0) | (0x1 << 1)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_VIC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 12); \
+}
+
+#define	HAL_PWRMGT_DISABLE_VIC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~(0x1 << 12); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_SMC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG |= (0x1 << 4) | (0x1	<< 5); \
+}
+
+#define	HAL_PWRMGT_DISABLE_SMC_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL0_REG &= ~((0x1 <<	4) | (0x1 << 5)); \
+}
+
+
+#define	HAL_PWRMGT_ENABLE_HSDMA_CLOCK()	\
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG |= (0x1 << 29); \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1 << 16); \
+}
+
+#define	HAL_PWRMGT_DISABLE_HSDMA_CLOCK() \
+{ \
+    PWRMGT_CLOCK_GATE_CONTROL1_REG &= ~(0x1 << 29); \
+}
+
+
+
+/*
+ * Macro defines for Reset Control
+ */
+#define	HAL_PWRMGT_GLOBAL_SOFTWARE_RESET() \
+{ \
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG |= (0x1);	\
+    PWRMGT_SOFTWARE_RESET_CONTROL_REG &= ~(0x1); \
+}
+
+
+/*
+ * Macro defines for System Clock Control
+ */
+#define	HAL_PWRMGT_SET_PLL_FREQUENCY_175MHZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~0x3; \
+}
+
+
+#define	HAL_PWRMGT_SET_PLL_FREQUENCY_200MHZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~0x3; \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= 0x1; \
+}
+
+
+#define	HAL_PWRMGT_SET_PLL_FREQUENCY_225MHZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~0x3; \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= 0x2; \
+}
+
+
+#define	HAL_PWRMGT_SET_PLL_FREQUENCY_250MHZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~0x3; \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= 0x3; \
+}
+
+
+#define	HAL_PWRMGT_CONFIG_PLLCLK_TO_CPUCLK_RATIO(ratio)	\
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	2); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (((ratio	- 1) & 0x3) << 2); \
+}
+
+
+#define	HAL_PWRMGT_CONFIG_CPUCLK_TO_HCLK_RATIO(ratio) \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	4); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (((ratio	- 1) & 0x3) << 4); \
+}
+
+
+#define	HAL_PWRMGT_HCLK_SOURCE_FCLK() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x1 <<	6); \
+}
+
+
+#define	HAL_PWRMGT_HCLK_SOURCE_125MHZ()	\
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x1 << 6); \
+}
+
+
+#define	HAL_PWRMGT_GIGA_NIC_CLOCK_SOURCE_HCLK()	\
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x1 <<	7); \
+}
+
+
+#define	HAL_PWRMGT_GIGA_NIC_CLOCK_SOURCE_62_5MHZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x1 << 7); \
+}
+
+
+#define	HAL_PWRMGT_CONFIG_HCLK_TO_PCLK_RATIO(ratio) \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	8); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (((ratio	- 1) & 0x3) << 8); \
+}
+
+
+#define	HAL_PWRMGT_I2S_CLOCK_SOURCE_8192000HZ()	\
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	12); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x0 << 12); \
+}
+
+
+#define	HAL_PWRMGT_I2S_CLOCK_SOURCE_11289600HZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	12); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x1 << 12); \
+}
+
+
+#define	HAL_PWRMGT_I2S_CLOCK_SOURCE_12288000HZ() \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	12); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= (0x2 << 12); \
+}
+
+
+#define	HAL_PWRMGT_CONFIGURE_MDC_CLOCK_DIVIDER(divided_value) \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3 <<	14); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= ((divided_value & 0x3) << 14); \
+}
+
+
+#define	HAL_PWRMGT_CONFIGURE_CLOCK_OUT_PIN(pin_source_select, divided_value) \
+{ \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG &= ~(0x3F << 16); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= ((pin_source_select & 0xF) << 16); \
+    PWRMGT_SYSTEM_CLOCK_CONTROL_REG |= ((divided_value & 0x3) << 20); \
+}
+
+
+/*
+ * Macro defines for PLL Power Down Control
+ */
+#define	HAL_PWRMGT_POWER_DOWN_SYSTEM_XTAL_PAD()	\
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 7)
+
+#define	HAL_PWRMGT_POWER_ON_SYSTEM_XTAL_PAD() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 7)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_PLL_X5() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 0)
+
+#define	HAL_PWRMGT_POWER_ON_PLL_X5() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 0)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_PLL_X8() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 1)
+
+#define	HAL_PWRMGT_POWER_ON_PLL_X8() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 1)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_PLL_X3() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 2)
+
+#define	HAL_PWRMGT_POWER_ON_PLL_X3() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 2)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_USBH_PHY_PLL() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 3)
+
+#define	HAL_PWRMGT_POWER_ON_USBH_PHY_PLL() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 3)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_USBD_PHY_PLL() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 4)
+
+#define	HAL_PWRMGT_POWER_ON_USBD_PHY_PLL() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 4)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_PLL_X2250() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 5)
+
+#define	HAL_PWRMGT_POWER_ON_PLL_X2250()	\
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 5)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_PLL_X7() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG |= (0x1 << 6)
+
+#define	HAL_PWRMGT_POWER_ON_PLL_X7() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG &= ~(0x1 << 6)
+
+
+#define	HAL_PWRMGT_POWER_DOWN_ALL_PLL()	\
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG =	0x7F;
+
+#define	HAL_PWRMGT_POWER_ON_ALL_PLL() \
+    PWRMGT_PLL_POWER_DOWN_CONTROL_REG =	0;
+
+
+/*
+ * Macro defines for Pad Drive Strength	Control
+ */
+#define	HAL_PWRMGT_SELECT_PAD_DRIVE_STRENGTH_PCMCIA_CARDBUS_MODE() \
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG &= ~(0x3 << 0); \
+}
+
+#define	HAL_PWRMGT_SELECT_PAD_DRIVE_STRENGTH_PCI_MODE()	\
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG &= ~(0x3 << 0); \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG |= (0x1 << 0); \
+}
+
+#define	HAL_PWRMGT_SELECT_PAD_DRIVE_STRENGTH_MII_MODE()	\
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG |= (0x1 << 2); \
+}
+
+#define	HAL_PWRMGT_SELECT_PAD_DRIVE_STRENGTH_RGMII_MODE() \
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG &= ~(0x1 << 2); \
+}
+
+#define	HAL_PWRMGT_ENABLE_MII_PAD_SIGNAL_NOT_BOUNDED() \
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG |= (0x1 << 3); \
+}
+
+#define	HAL_PWRMGT_DISABLE_MII_PAD_SIGNAL_NOT_BOUNDED()	\
+{ \
+    PWRMGT_PAD_DRIVE_STRENGTH_CONTROL_REG &= ~(0x1 << 3); \
+}
+
+
+/*
+ * Macro defines for USB Device	Power Management
+ */
+#define	HAL_PWRMGT_REMOTE_WAKEUP_USB_HOST() \
+{ \
+    PWRMGT_USB_DEVICE_POWERMGT_REG |= (0x1 << 4); \
+}
+
+#define	HAL_PWRMGT_USB_DEVICE_PHY_CLOCK_SOURCE_EXTERNAL_12MHZ()	\
+{ \
+    PWRMGT_USB_DEVICE_POWERMGT_REG &= ~(0x1 << 5); \
+}
+
+#define	HAL_PWRMGT_USB_DEVICE_PHY_CLOCK_SOURCE_INTERNAL_12MHZ()	\
+{ \
+    PWRMGT_USB_DEVICE_POWERMGT_REG |= (0x1 << 5); \
+}
+
+
+/*
+ * Macro defines for Regulator Control
+ */
+
+
+#endif	// end of #ifndef _STAR_POWERMGT_H_

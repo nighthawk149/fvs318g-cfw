@@ -1,0 +1,15 @@
+/CHANGES/1.1.1.1/Wed Dec 24 05:35:48 2008/-kb/
+/ChangeLog/1.1.1.1/Wed Dec 24 05:35:48 2008/-kb/
+/INTRO/1.1.1.1/Wed Dec 24 05:35:48 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:48 2008/-kb/
+/balloc.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/dir.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/file.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/ialloc.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/inode.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/itree.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/namei.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/super.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/symlink.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/sysv.h/1.1.1.1/Wed Dec 24 05:35:48 2008//
+D

@@ -1,0 +1,60 @@
+README
+------
+
+This is irqd, an alternative IRQ balancer for Linux kernels.  It
+balances the IRQs more or less evenly across the CPUs you have in your
+system.
+
+As of version 0.6.2 it requires glib-2.0 and libnl-3.2 to compile.
+
+It currently relies on the Receive Packet Steering (RPS)
+implementation of newer Linux kernels, it is of less use currently if
+RPS is not available.  For details on RPS see the very good article
+from LWN: http://lwn.net/Articles/362339.
+
+
+STRATEGY
+--------
+
+It currently implements the most gainfull cases only:
+
+1. each multiqueue NIC is balanced over as much CPUs as possible.
+
+2. for singlequeue NICs start with assigning two CPUs per IRQs.  This
+   way you should experience an improvement over the existing
+   right from the start.
+
+3. for singlequeue NICs it will currently assign up to four CPUs
+   per IRQ.
+
+4. for non-RPS kernels it just balances multiqueue NICs.  Singlequeue
+   NICs on non-RPS kernels will be addressed in the future.
+
+Implementation of irqd is currently ongoing.
+
+
+RUNNING
+-------
+
+irqd is currently very minimalistic, only serving a very dedicated
+purpose.  It reports the current IRQ mapping to the different
+CPUs to the file /var/lib/misc/irqd.cpumap.  Example contents:
+
+cpu0: eth0:0 eth1:2                                                           
+cpu1: eth0:0 eth1:3                                                           
+cpu2: eth1:0                                                                  
+cpu3: eth1:1                                                                  
+
+Here eth0 being a singlequeue NIC and eth1 being multiqueue (with four
+queues).
+
+
+BUGS
+----
+
+irqd may contain bugs.  Any bug report and/or feature request is
+welcomed, but please look at the TODO file contained before
+making a request.
+
+-- 
+Holger Eitzenberger <holger@eitzenberger.org>

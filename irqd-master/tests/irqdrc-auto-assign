@@ -1,0 +1,13 @@
+
+/* CPU2, CPU3 */
+cpuset "network" 0 2 {
+	strategy "evenly" {
+		initial-steering-cpus 2;
+	};
+
+	devices {
+		// use this cpuset for all interfaces otherwise unassigned
+		interface-auto-assign;
+	};
+};
+

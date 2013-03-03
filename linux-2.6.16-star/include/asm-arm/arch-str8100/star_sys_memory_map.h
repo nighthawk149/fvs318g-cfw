@@ -1,0 +1,116 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2008 Cavium Networks 
+ * 
+ *  This file is free software; you can redistribute it and/or modify 
+ *  it under the terms of the GNU General Public License, Version 2, as 
+ *  published by the Free Software Foundation. 
+ *
+ *  This file is distributed in the hope that it will be useful, 
+ *  but AS-IS and WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, TITLE, or 
+ *  NONINFRINGEMENT.  See the GNU General Public License for more details. 
+ *
+ *  You should have received a copy of the GNU General Public License 
+ *  along with this file; if not, write to the Free Software 
+ *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA or 
+ *  visit http://www.gnu.org/licenses/. 
+ *
+ *  This file may also be available under a different license from Cavium. 
+ *  Contact Cavium Networks for more information
+ *
+ ******************************************************************************/
+
+
+#ifndef	_STAR_SYS_MEMORY_MAP_H_
+#define	_STAR_SYS_MEMORY_MAP_H_
+
+
+#if 0
+#define __UBOOT__
+#else
+#define __LINUX__
+#endif
+
+
+/*
+ * sytem memory	mapping	after reset
+ */
+#define SYSPA_FLASH_SRAM_BANK0_BASE_ADDR	0x10000000
+#define SYSPA_FLASH_SRAM_BANK1_BASE_ADDR	0x11000000
+#define SYSPA_FLASH_SRAM_BANK2_BASE_ADDR	0x12000000
+#define SYSPA_FLASH_SRAM_BANK3_BASE_ADDR	0x13000000
+#define	SYSPA_PCMCIA_ATTRIBUTE_MEMORY_BASE_ADDR	0x14000000
+#define	SYSPA_PCMCIA_COMMON_MEMORY_BASE_ADDR	0x15000000
+#define	SYSPA_PCMCIA_IO_SPACE_BASE_ADDR		0x16000000
+#define	SYSPA_IDE_DEVICE_BASE_ADDR		0x18000000
+#define	SYSPA_SDRAM_MEMORY_BASE_ADDR		0x20000000
+#define	SYSPA_GDMAC_BASE_ADDR			0x60000000
+#define	SYSPA_NIC_BASE_ADDR			0x70000000
+#define	SYSPA_SPI_BASE_ADDR			0x71000000
+#define	SYSPA_PCM_BASE_ADDR			0x71000000
+#define	SYSPA_I2C_BASE_ADDR			0x71000000
+#define	SYSPA_I2S_BASE_ADDR			0x71000000
+#define	SYSPA_DDRC_SDRC_BASE_ADDR		0x72000000
+#define	SYSPA_SMC_BASE_ADDR			0x73000000
+#define	SYSPA_PCMCIA_CONTROL_BASE_ADDR		0x73000000
+#define	SYSPA_IDE_CONTROLLER_BASE_ADDR		0x74000000
+#define	SYSPA_MISC_BASE_ADDR			0x76000000
+#define	SYSPA_POWER_MANAGEMENT_BASE_ADDR	0x77000000
+#define	SYSPA_UART0_BASE_ADDR			0x78000000
+#define	SYSPA_UART1_BASE_ADDR			0x78800000
+#define	SYSPA_TIMER_BASE_ADDR			0x79000000
+#define	SYSPA_WATCHDOG_TIMER_BASE_ADDR		0x7A000000
+#define	SYSPA_RTC_BASE_ADDR			0x7B000000
+#define	SYSPA_GPIOA_BASE_ADDR			0x7C000000
+#define	SYSPA_GPIOB_BASE_ADDR			0x7C800000
+#define	SYSPA_PCI_BRIDGE_CONFIG_DATA_BASE_ADDR	0xA0000000
+#define	SYSPA_PCI_BRIDGE_CONFIG_ADDR_BASE_ADDR	0xA4000000
+#define	SYSPA_PCI_IO_SPACE_BASE_ADDR		0xA8000000
+#define	SYSPA_PCI_MEMORY_SPACE_BASE_ADDR	0xB0000000
+#define	SYSPA_USB11_CONFIG_BASE_ADDR		0xC0000000
+#define	SYSPA_USB11_OPERATION_BASE_ADDR		0xC4000000
+#define	SYSPA_USB20_CONFIG_BASE_ADDR		0xC8000000
+#define	SYSPA_USB20_OPERATION_BASE_ADDR		0xCC000000
+#define	SYSPA_USB20_DEVICE_BASE_ADDR		0xD0000000
+#define	SYSPA_VIC_BASE_ADDR			0xFFFFF000
+
+#if defined(__LINUX__)
+#define SYSVA_IDE_DEVICE_BASE_ADDR		0xFFF00000
+#define SYSVA_GDMAC_BASE_ADDR			0xFFF01000
+#define SYSVA_NIC_BASE_ADDR			0xFFF02000
+#define SYSVA_SPI_BASE_ADDR			0xFFF03000
+#define SYSVA_PCM_BASE_ADDR			0xFFF04000
+#define SYSVA_I2C_BASE_ADDR			0xFFF05000
+#define SYSVA_I2S_BASE_ADDR			0xFFF06000
+#define SYSVA_DDRC_SDRC_BASE_ADDR		0xFFF07000
+#define SYSVA_SMC_BASE_ADDR			0xFFF08000
+#define SYSVA_PCMCIA_CONTROL_BASE_ADDR		0xFFF09000
+#define SYSVA_IDE_CONTROLLER_BASE_ADDR		0xFFF0A000
+#define SYSVA_MISC_BASE_ADDR			0xFFF0B000
+#define SYSVA_POWER_MANAGEMENT_BASE_ADDR	0xFFF0C000
+#define SYSVA_UART0_BASE_ADDR			0xFFF0D000
+#define SYSVA_UART1_BASE_ADDR			0xFFF0E000
+#define SYSVA_TIMER_BASE_ADDR			0xFFF0F000
+#define SYSVA_WATCHDOG_TIMER_BASE_ADDR		0xFFF10000
+#define SYSVA_RTC_BASE_ADDR			0xFFF11000
+#define SYSVA_GPIOA_BASE_ADDR			0xFFF12000
+#define SYSVA_GPIOB_BASE_ADDR			0xFFF13000
+#define SYSVA_PCI_BRIDGE_CONFIG_DATA_BASE_ADDR	0xFFF14000
+#define SYSVA_PCI_BRIDGE_CONFIG_ADDR_BASE_ADDR	0xFFF15000
+#define SYSVA_USB11_CONFIG_BASE_ADDR		0xFFF16000
+#define SYSVA_USB11_OPERATION_BASE_ADDR		0xFFF17000
+#define SYSVA_USB20_CONFIG_BASE_ADDR		0xFFF18000
+#define SYSVA_USB20_OPERATION_BASE_ADDR		0xFFF19000
+#define SYSVA_USB20_DEVICE_BASE_ADDR		0xFFF1A000
+
+#if 1
+#define SYSVA_FLASH_SRAM_BANK1_BASE_ADDR 	0xFF000000 // size 8M
+#else
+#define SYSVA_FLASH_SRAM_BANK1_BASE_ADDR 	0xFFF20000 // size 8M
+#endif
+
+#define SYSVA_VIC_BASE_ADDR			0xFFF1B000
+#endif //__LINUX__
+
+#endif // end of #ifndef _STAR_SYS_MEMORY_MAP_H_

@@ -1,0 +1,19 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:42 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:42 2008/-kb/
+/last.c/1.1.1.1/Wed Dec 24 05:35:42 2008//
+/sound_core.c/1.1.1.1/Wed Dec 24 05:35:42 2008//
+/sound_firmware.c/1.1.1.1/Wed Dec 24 05:35:42 2008//
+D/arm////
+D/core////
+D/drivers////
+D/i2c////
+D/isa////
+D/mips////
+D/oss////
+D/parisc////
+D/pci////
+D/pcmcia////
+D/ppc////
+D/sparc////
+D/synth////
+D/usb////

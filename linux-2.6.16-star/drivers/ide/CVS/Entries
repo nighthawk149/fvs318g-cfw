@@ -1,0 +1,26 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:57 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:57 2008/-kb/
+/ide-cd.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-cd.h/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-disk.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-dma.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-floppy.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-generic.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-io.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-iops.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-lib.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-pnp.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-probe.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-proc.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-tape.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-taskfile.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide-timing.h/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/ide.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/setup-pci.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+D/arm////
+D/cris////
+D/h8300////
+D/legacy////
+D/mips////
+D/pci////
+D/ppc////

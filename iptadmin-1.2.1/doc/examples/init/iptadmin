@@ -1,0 +1,29 @@
+#! /bin/sh
+# Basic support for IRIX style chkconfig
+###
+# chkconfig: 235 98 55
+# description: Manages the services you are controlling with the chkconfig command
+###
+
+case "$1" in
+  start)
+        echo -n "Starting iptables-admin"
+        /usr/bin/iptadmin start
+        echo "."
+        ;;
+  stop)
+        echo -n "Stopping iptables-admin"
+        /usr/bin/iptadmin stop
+        echo "."
+        ;;
+  restart)
+        echo -n "Restarting iptables-admin"
+        /usr/bin/iptadmin restart
+        echo "."
+        ;;
+  *)
+        echo "Usage: /sbin/service iptadmin {start|stop|restart}"
+        exit 1
+esac
+
+exit 0

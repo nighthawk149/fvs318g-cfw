@@ -1,0 +1,5 @@
+interface=wlan0
+driver=mtlk
+ssid=""
+macaddr_acl=0
+# ------AP is in Plain Text mode------

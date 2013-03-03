@@ -1,0 +1,27 @@
+/Makefile/1.1/Wed Dec 24 07:31:53 2008/-kb/
+/agent.c/1.1/Wed Dec 24 07:31:53 2008//
+/agent.h/1.1/Wed Dec 24 07:31:54 2008//
+/cache.c/1.1/Wed Dec 24 07:31:54 2008//
+/cm.c/1.1/Wed Dec 24 07:31:54 2008//
+/cm_msgs.h/1.1/Wed Dec 24 07:31:54 2008//
+/core_priv.h/1.1/Wed Dec 24 07:31:54 2008//
+/device.c/1.1/Wed Dec 24 07:31:54 2008//
+/fmr_pool.c/1.1/Wed Dec 24 07:31:54 2008//
+/mad.c/1.1/Wed Dec 24 07:31:54 2008//
+/mad_priv.h/1.1/Wed Dec 24 07:31:54 2008//
+/mad_rmpp.c/1.1/Wed Dec 24 07:31:54 2008//
+/mad_rmpp.h/1.1/Wed Dec 24 07:31:54 2008//
+/packer.c/1.1/Wed Dec 24 07:31:54 2008//
+/sa_query.c/1.1/Wed Dec 24 07:31:54 2008//
+/smi.c/1.1/Wed Dec 24 07:31:54 2008//
+/smi.h/1.1/Wed Dec 24 07:31:54 2008//
+/sysfs.c/1.1/Wed Dec 24 07:31:54 2008//
+/ucm.c/1.1/Wed Dec 24 07:31:55 2008//
+/ud_header.c/1.1/Wed Dec 24 07:31:55 2008//
+/user_mad.c/1.1/Wed Dec 24 07:31:55 2008//
+/uverbs.h/1.1/Wed Dec 24 07:31:55 2008//
+/uverbs_cmd.c/1.1/Wed Dec 24 07:31:55 2008//
+/uverbs_main.c/1.1/Wed Dec 24 07:31:55 2008//
+/uverbs_mem.c/1.1/Wed Dec 24 07:31:55 2008//
+/verbs.c/1.1/Wed Dec 24 07:31:55 2008//
+D

@@ -1,0 +1,13 @@
+vlan tag base use 8021Q
+
+* need IST mode on.
+* need select 8021Q support in linux kernel option.
+* use dorado2_8021Q_vlantag_vlan.h define, this file is
+    a sample for define needed macro defined.
+* if want to use vlan tag base vlan on dorado2 board,
+  add
+    #define CONFIG_VLANTAG_VLAN
+  in dorado2.h
+
+
+note: Now test only on STAR dorado2 board.

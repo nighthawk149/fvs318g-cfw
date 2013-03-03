@@ -1,0 +1,113 @@
+if ARCH_STR9100
+
+menu "STR9100 Options"
+
+config CONSOLE_BAUD_RATE
+	int "Console Baud Rate"
+	default 115200
+	help
+	  set the console baudrate
+
+config CPU_ISPAD_ENABLE
+	bool "Enable I-Scratch Pad Support"
+	default y
+	help
+	  enable I-Scratch Pad support
+
+config CPU_DSPAD_ENABLE
+	bool "Enable D-Scratch Pad Support"
+	default n
+	help
+	  enable D-Scratch Pad support (Cannot Work Now)
+
+choice
+	prompt "DRAM SIZE"
+	default STR9100_DRAM_16M
+
+config STR9100_DRAM_16M
+	bool "16MBytes"
+
+config STR9100_DRAM_32M
+	bool "32MBytes"
+
+config STR9100_DRAM_64M
+	bool "64MBytes"
+
+endchoice
+
+
+choice
+	prompt "Counter Mode"
+	default STR9100_TIMER_COUNTER
+	help 
+	    STR9100 BSP will use timer2 for counter mode. 
+	    COUNTER will provide a general API for timer counter
+	    INTERRUPT will use timer interrupt for timer counter
+
+config STR9100_TIMER_COUNTER
+	bool "COUNTER"
+
+config STR9100_TIMER_INTERRUPT
+	bool "INTERRUPT"
+
+endchoice
+
+
+if PCI
+choice
+	prompt "PCI Frequency"
+	default STAR9100_PCI33M
+
+config STR9100_PCI33M
+	bool "PCI_33Mhz"
+
+config STR9100_PCI66M
+	bool "PCI_66Mhz"
+
+endchoice
+endif
+
+config STR9100_INFO
+	bool "STR9100 Infomation at /proc/str9100/info"
+
+comment "Flash MAP"
+config STR9100_FLASH_PART
+	bool "STR9100 flash partition setting"
+
+if STR9100_FLASH_PART
+	config ARMBOOT_OFFSET
+	hex "ARMBOOT OFFSET"
+	default 0x0
+	help
+	  The armboot start offset in flash layout
+
+	config KERNEL_OFFSET
+	hex "KERNEL OFFSET"
+	default 0x40000
+	help
+	  The kernel start offset in flash layout
+
+	config ROOTFS_OFFSET
+	hex "ROOTFS OFFSET"
+	default 0x140000
+	help
+	  The rootfs start offset in flash layout
+
+	config CFG_OFFSET
+	hex "CFG OFFSET"
+	default 0x7f0000
+	help
+	  The cfg start offset in flash layout
+endif
+
+comment "Third Party Support"
+
+config STR9100_EWC_SUPPORT
+	bool "EWC(802.11N) Support"
+
+config SWITCH_IOCTL
+	bool "SUPPORT SWITCH IOCTL"
+
+endmenu
+
+endif

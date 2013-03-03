@@ -1,0 +1,58 @@
+#!/bin/sh
+# System Init
+#
+
+#/bin/mount -t proc proc /proc
+#/bin/mount -o remount,rw /
+#/bin/mount -t sysfs sysfs /sys
+#/bin/mount -a
+#/bin/hostname -F /etc/hostname
+#/sbin/ifconfig lo 127.0.0.1 up
+#/sbin/route add -net 127.0.0.0 netmask 255.0.0.0 lo
+#/sbin/ldconfig -C /tmp/ld.so.cache
+
+echo
+echo Booting STAR STR9100 UserSpace...
+echo `uname -a`
+echo Starting System...
+
+# First mount /proc!
+echo -n "Mounting /proc... "
+mount -n /proc /proc -t proc
+echo "Done"
+
+# Make sure / is rw
+echo -n "Mounting '/' read-write... "
+mount -n -o remount,rw /
+echo "Done"
+
+# Mount sysfs
+echo -n "Mounting /sys... "
+/bin/mount -t sysfs sysfs /sys
+echo "Done"
+
+# Bring up loopback
+echo -n "Brining up loopback interface... "
+ifconfig lo 127.0.0.1 up
+echo "Done"
+
+touch /tmp/utmp
+touch /tmp/wtmp
+touch /tmp/lastlog
+touch /tmp/messages
+
+# Start portmap
+#echo -n "Starting Portmap... "
+#/bin/portmap
+#echo "Done"
+
+# Set hostname
+echo -n "Setting Hostname... "
+hostname -F /etc/hostname
+echo "Done"
+
+# Setup IXP stuff(like NPEs)
+#echo "Running ixpInit... ";
+#. ixp/ixpInit
+
+#/sbin/ldconfig -C /tmp/ld.so.cache

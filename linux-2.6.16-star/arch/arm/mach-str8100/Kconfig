@@ -1,0 +1,123 @@
+if ARCH_STR8100
+
+menu "STR8100 Options"
+
+config CONSOLE_BAUD_RATE
+	int "Console Baud Rate"
+	default 38400
+	help
+	  set the console baudrate
+
+config VIC_INTERRUPT
+	bool "Enable Vector Interrupt Controller"
+	default y
+	help
+	  enable the vector interrupt controller
+
+choice
+	prompt "DRAM SIZE"
+	default STR8100_DRAM_16M
+
+config STR8100_DRAM_16M
+	bool "16MBytes"
+
+config STR8100_DRAM_32M
+	bool "32MBytes"
+
+config STR8100_DRAM_64M
+	bool "64MBytes"
+
+endchoice
+
+if PCI
+choice
+	prompt "PCI Frequency"
+	default STR8100_PCI33M
+
+config STR8100_PCI33M
+	bool "PCI_33Mhz"
+
+config STR8100_PCI66M
+	bool "PCI_66Mhz"
+
+endchoice
+endif
+
+config STR8100_DMA
+	bool "Enable DMA Controller"
+	default n
+	help
+	  enable the DMA controller
+
+config STR8100_HSDMA
+	bool "Enable HSDMA Controller"
+	default n
+	help
+	  enable the HSDMA controller
+
+config STR8100_INFO
+	bool "STR8100 Infomation at /proc/str8100/info"
+
+config STR8100_USBD_REBOOT_INTHANDLER
+	tristate "USB Mass Storage Device"
+
+config STR8100_I2S_DEMO
+	tristate "Enable I2S sound demo driver"
+	default n
+	help
+	  enable the I2S sound demo driver with /proc/str8100/i2s
+
+config STR8100_I2S_WM8772_DEMO
+	tristate "Enable I2S sound demo driver with WM8772"
+	default n
+	help
+	  enable the I2S sound demo driver with wm8772
+
+config LE88221_CONTROL
+	bool "Legerity LE88221 Control Support"
+	depends on SPI
+
+config STR8100_PCM_LEGERITY_2PHONE_DEMO
+	tristate "2 phone PCM sound demo driver for Legerity"
+	select LE88221_CONTROL
+	default n
+
+comment "Flash MAP"
+config STR8100_FLASH_PART
+	bool "STR8100 flash partition setting"
+
+if STR8100_FLASH_PART
+	config ARMBOOT_OFFSET
+	hex "ARMBOOT OFFSET"
+	default 0x0
+	help
+	  The armboot start offset in flash layout
+
+	config KERNEL_OFFSET
+	hex "KERNEL OFFSET"
+	default 0x40000
+	help
+	  The kernel start offset in flash layout
+
+	config ROOTFS_OFFSET
+	hex "ROOTFS OFFSET"
+	default 0x140000
+	help
+	  The rootfs start offset in flash layout
+
+	config CFG_OFFSET
+	hex "CFG OFFSET"
+	default 0x7f0000
+	help
+	  The cfg start offset in flash layout
+endif
+
+
+comment "Third Party Support"
+
+config STR8100_EWC_SUPPORT
+	bool "EWC(802.11N) Support"
+
+endmenu
+
+endif

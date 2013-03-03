@@ -1,0 +1,13 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:41 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:41 2008/-kb/
+/console.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/disk.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/main.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/pm.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/power.h/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/poweroff.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/process.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/smp.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/snapshot.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+/swsusp.c/1.1.1.1/Wed Dec 24 05:35:41 2008//
+D

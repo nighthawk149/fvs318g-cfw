@@ -1,0 +1,4 @@
+# custom user profile
+
+export PATH=$PATH:/work/opt/netgear:/work/usr/bin:/work/usr/sbin
+export LD_LIBRARY_PATH=/work/lib:/work/opt/netgear:$LD_LIBRARY_PATH

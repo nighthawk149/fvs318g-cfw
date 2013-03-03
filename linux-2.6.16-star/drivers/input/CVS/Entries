@@ -1,0 +1,16 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:54 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:54 2008/-kb/
+/evbug.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/evdev.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/input.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/joydev.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/mousedev.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/power.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/tsdev.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+D/gameport////
+D/joystick////
+D/keyboard////
+D/misc////
+D/mouse////
+D/serio////
+D/touchscreen////

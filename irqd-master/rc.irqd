@@ -1,0 +1,67 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          irqd
+# Default-Start:     3
+# Default-Stop:
+# Description:       Alternative IRQ balancer
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+IRQD=/usr/sbin/irqd
+PIDFILE=/var/run/irqd.pid
+NOSELFMON=/etc/no-selfmonitor/irqd
+
+test -x $IRQD || exit 5
+
+NCPUS=$(grep ^processor /proc/cpuinfo | wc -l)
+
+case "$1" in
+    start)
+	if [ "$NCPUS" = "1" ] ; then
+	    log_warning_msg "irqd disabled on single CPU"
+	    exit 0
+	fi
+
+	mkdir -p /etc/no-selfmonitor
+	touch $NOSELFMON
+	log_daemon_msg "Starting IRQ Daemon" "irqd"
+	start-stop-daemon --start --quiet --oknodo --exec $IRQD
+	log_end_msg $?
+	rm -f $NOSELFMON
+	;;
+    stop)
+	log_daemon_msg "Stopping IRQ Daemon" "irqd"
+	touch $NOSELFMON
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+	log_end_msg $?
+	;;
+    try-restart)
+	$0 status >/dev/null &&  $0 restart
+	rc_status
+	;;
+    restart | force-reload )
+	log_deamon_msg "Restarting IRQ Daemon" "irqd"
+	start-stop-daemon --stop --quiet --oknodo --retry 30 --pidfile $PIDFILE
+	touch $NOSELFMON
+	$0 stop
+	$0 start
+	rm -f $NOSELFMON
+	;;
+    reload)
+	log_daemon_msg "Reloading IRQ Daemon" "irqd"
+	start-stop-daemon --stop --signal 1 --quiet --oknod --pidfile $PIDFILE --exec $IRQD
+	log_end_msg $?a    
+	;;
+    status)
+	status_of_proc -p $PIDFILE /$IRQD irqd && exit 0 || exit %?
+	;;
+    *)
+	echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload}"
+	exit 1
+	;;
+esac
+
+exit 0
+

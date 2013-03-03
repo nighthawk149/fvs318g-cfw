@@ -1,0 +1,13 @@
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:57 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:57 2008/-kb/
+/ebcdic.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/s390_rdev.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/s390mach.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/s390mach.h/1.1.1.1/Wed Dec 24 05:35:57 2008//
+/sysinfo.c/1.1.1.1/Wed Dec 24 05:35:57 2008//
+D/block////
+D/char////
+D/cio////
+D/crypto////
+D/net////
+D/scsi////

@@ -1,0 +1,24 @@
+/Makefile/1.1.1.1/Wed Dec 24 05:35:49 2008/-kb/
+/auth.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/export.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/lockd.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs2acl.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfs3acl.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs3proc.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs3xdr.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfs4acl.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs4callback.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs4idmap.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfs4proc.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs4recover.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs4state.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfs4xdr.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfscache.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfsctl.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfsfh.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfsproc.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/nfssvc.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/nfsxdr.c/1.1.1.1/Wed Dec 24 05:35:48 2008//
+/stats.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+/vfs.c/1.1.1.1/Wed Dec 24 05:35:49 2008//
+D

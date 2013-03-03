@@ -1,0 +1,81 @@
+#!/bin/sh
+export PATH=$PATH:/work/opt/netgear:/work/usr/bin:/work/usr/sbin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/work/lib:/work/opt/netgear
+
+#echo -n "Enabling quiet boot... "
+#echo "1 4 1 7" > /proc/sys/kernel/printk
+#echo "Done"
+
+echo -n "Setting up interfaces... "
+ifconfig eth0 up
+ifconfig eth1 up
+echo "Done"
+
+echo -n "Loading modules... "
+#[ -f /work/lib/modules/bsp.ko ] && { insmod /work/lib/modules/bsp.ko; }
+#[ -f /work/lib/modules/klite.ko ] && { insmod /work/lib/modules/klite.ko; }
+#[ -f /work/lib/modules/vipsec.ko ] && { insmod /work/lib/modules/vipsec.ko; }
+#[ -f /work/lib/modules/xlr8Nat.ko ] && { insmod /work/lib/modules/xlr8Nat.ko; }
+#[ -f /work/lib/modules/umi.ko ] && { insmod /work/lib/modules/umi.ko; }
+[ -f /work/lib/modules/ip_conntrack_pptp.ko ] && { insmod /work/lib/modules/ip_conntrack_pptp.ko; }
+[ -f /work/lib/modules/ip_nat_pptp.ko ] && { insmod /work/lib/modules/ip_nat_pptp.ko; }
+#[ -f /work/lib/modules/bw.ko ] && { insmod /work/lib/modules/bw.ko; }
+[ -f /work/lib/modules/bcm5398.ko ] && { insmod /work/lib/modules/bcm5398.ko bcmswitch="bcm53118" ; }
+#[ -f/lib/modules/2.6.16-star/str9100_shnat.ko ] && { insmod /lib/modules/2.6.16-star/str9100_shnat.ko; }
+echo "Done"
+
+echo -n "Creating devices... "
+mknod /dev/ppp     c 108 0
+mknod /dev/pkp_dev c 125 0
+mknod /dev/led_dev c 242 0
+mknod /dev/fac_dev c 243 0
+mknod /dev/bcm53118 c `awk '$ 2=="bcm53118" {print $ 1}' /proc/devices` 0
+mknod /dev/watchdog c 10  130
+mknod /dev/kdump   c 240 0
+echo "Done"
+
+echo -n "Enabling watchdog..."
+#echo 1 > /proc/sys/kernel/panic_on_oops
+#echo 1 > /proc/sys/kernel/panic
+[ -f /work/lib/modules/str9100_wdt.ko ] && { insmod -q  /work/lib/modules/str9100_wdt.ko; }
+echo "Done"
+
+# Setting the maximum number of connections through the firewall 
+##echo "6000" > /proc/sys/net/ipv4/ip_conntrack_max
+
+# Ignore broadcast ICMP traffic
+##echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+
+# Ignore bogus ICMP error messages
+##echo "1" > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses
+
+# Use New SA
+##echo "0" > /proc/sys/net/key/preferred_oldsa
+##echo "-1" > /proc/sys/net/ipv4/ipsec4/ecn
+
+# ICMP contarck setting
+##echo "8" > /proc/sys/net/ipv4/netfilter/ip_conntrack_icmp_timeout 
+
+echo -n "Setting hostname as $HOSTNAME... "
+hostname FVS318G
+echo "Done"
+
+echo -n "Setting up LAN... "
+vlanConfig /dev/bcm53118 8021q enable > /dev/null
+vconfig add eth0 1
+ifconfig eth0.1 up
+vlanConfig /dev/bcm53118 setVlanEntry 1 511 255 > /dev/null
+echo "Done"
+
+# this must be last step. Indicate to the user that we're up and running
+echo "test off" > /proc/ledconfig
+
+echo -n "Enabling forwarding... "
+echo "1" > /proc/sys/net/ipv4/ip_forward
+echo "Done"
+
+echo -n "Enabling iptables... "
+if [ -e "/work/firewall.sh" ]; then
+    sh /work/firewall.sh
+fi
+echo "Done"

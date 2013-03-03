@@ -1,0 +1,31 @@
+/Kconfig/1.1/Wed Dec 24 07:24:01 2008/-kb/
+/Makefile/1.1/Wed Dec 24 07:24:01 2008/-kb/
+/control.c/1.1/Wed Dec 24 07:24:01 2008//
+/control_compat.c/1.1/Wed Dec 24 07:24:01 2008//
+/device.c/1.1/Wed Dec 24 07:24:01 2008//
+/hwdep.c/1.1/Wed Dec 24 07:24:01 2008//
+/hwdep_compat.c/1.1/Wed Dec 24 07:24:01 2008//
+/info.c/1.1/Wed Dec 24 07:24:01 2008//
+/info_oss.c/1.1/Wed Dec 24 07:24:01 2008//
+/init.c/1.1/Wed Dec 24 07:24:01 2008//
+/isadma.c/1.1/Wed Dec 24 07:24:02 2008//
+/memalloc.c/1.1/Wed Dec 24 07:24:02 2008//
+/memory.c/1.1/Wed Dec 24 07:24:02 2008//
+/misc.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_compat.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_lib.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_memory.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_misc.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_native.c/1.1/Wed Dec 24 07:24:02 2008//
+/pcm_timer.c/1.1/Wed Dec 24 07:24:02 2008//
+/rawmidi.c/1.1/Wed Dec 24 07:24:02 2008//
+/rawmidi_compat.c/1.1/Wed Dec 24 07:24:02 2008//
+/rtctimer.c/1.1/Wed Dec 24 07:24:02 2008//
+/sgbuf.c/1.1/Wed Dec 24 07:24:02 2008//
+/sound.c/1.1/Wed Dec 24 07:24:02 2008//
+/sound_oss.c/1.1/Wed Dec 24 07:24:03 2008//
+/timer.c/1.1/Wed Dec 24 07:24:03 2008//
+/timer_compat.c/1.1/Wed Dec 24 07:24:03 2008//
+D/oss////
+D/seq////

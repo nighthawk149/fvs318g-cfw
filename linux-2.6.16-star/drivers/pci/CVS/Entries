@@ -1,0 +1,25 @@
+/.gitignore/1.1.1.1/Wed Dec 24 05:35:54 2008/-kb/
+/Kconfig/1.1.1.1/Wed Dec 24 05:35:54 2008/-kb/
+/Makefile/1.1.1.1/Wed Dec 24 05:35:54 2008/-kb/
+/access.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/bus.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/hotplug.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/msi.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/msi.h/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/pci-acpi.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/pci-driver.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/pci-sysfs.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/pci.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/pci.h/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/probe.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/proc.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/quirks.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/remove.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/rom.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/search.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/setup-bus.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/setup-irq.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/setup-res.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+/syscall.c/1.1.1.1/Wed Dec 24 05:35:54 2008//
+D/hotplug////
+D/pcie////

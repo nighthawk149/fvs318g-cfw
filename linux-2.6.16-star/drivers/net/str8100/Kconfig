@@ -1,0 +1,28 @@
+menu "STAR Equuleus NIC support"
+	depends on ARCH_STR8100
+
+config STAR_NIC
+	tristate "STAR Equuleus NIC driver support"
+	help
+
+choice 
+	depends on STAR_NIC 
+        prompt "PHY Driver"
+        default STR_NIC_PHY_VSC8201
+          
+config STAR_NIC_PHY_INTERNAL_PHY
+        bool "Star Internal 10/100 PHY"
+
+config STAR_NIC_PHY_VSC8601
+        bool "Vitesse 8601"
+        
+config STAR_NIC_PHY_IP101A
+        bool "ICPlus IP101A"
+
+config STAR_NIC_PHY_IP1001
+        bool "ICPlus IP1001"
+          
+endchoice
+
+endmenu
+

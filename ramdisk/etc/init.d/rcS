@@ -1,0 +1,54 @@
+#!/bin/sh
+
+echo
+echo -e "Booting User Space... "
+
+# First mount /proc!
+echo -n "Mounting '/proc'... "
+mount -n /proc /proc -t proc
+echo "Done"
+
+# Make sure / is rw
+echo -n "Mounting '/' read/write... "
+mount -n -o remount,rw /
+echo "Done"
+
+# Mount sysfs
+echo -n "Mounting '/sys'... "
+/bin/mount -t sysfs sysfs /sys
+echo "Done"
+
+touch /tmp/utmp
+touch /tmp/wtmp
+touch /tmp/lastlog
+touch /tmp/messages
+
+# Bring up loopback
+echo -n "Brining up loopback interface... "
+ifconfig lo 127.0.0.1 up
+echo "Done"
+
+# Set hostname
+echo -n "Setting Hostname... "
+hostname -F /etc/hostname
+echo "Done"
+
+WORK=/work
+mkdir -p $WORK
+
+# Mount Flash
+echo -n "Mounting Flash... "
+mount -t jffs2 /dev/mtdblock3 $WORK -orw
+if [ $? -ne 0 ]; then
+    echo "oops: unable to mount flash :("
+    #reboot
+fi
+echo "Done"
+
+# Execute platform initialization script
+if [ -e "$WORK//init" ]; then
+    export LD_LIBRARY_PATH=$WORK/;
+    export PATH=$PATH:/$WORK/usr/bin:/$WORK/usr/sbin;
+    sh $WORK/init
+fi
+echo "System Started..."
